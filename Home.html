@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .dashboard-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .dashboard-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-header h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .widget {
+      background-color: #f0f2f5;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .widget h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .widget p {
+      font-size: 1rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Welcome</h1>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="widget">
+        <h2>Profile</h2>
+        <p>View and edit your personal details.</p>
+      </div>
+
+      <div class="widget">
+        <h2>Messages</h2>
+        <p>You have 3 new messages.</p>
+      </div>
+
+      <div class="widget">
+        <h2>Tasks</h2>
+        <p>5 tasks pending completion.</p>
+      </div>
+
+      <div class="widget">
+        <h2>Music</h2>
+        <p>Adjust your preferences.</p>
+      </div>
+	  
+	   <div class="widget">
+        <h2>video</h2>
+        <p>Adjust your preferences.</p>
+    </div>
+  </div>
+
+</body>
+</html>

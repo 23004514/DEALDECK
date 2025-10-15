@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DealDeck Sales Dashboard</title>
+  <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="logo">DealDeck</div>
+      <nav class="menu">
+        <h3>MENU</h3>
+        <ul>
+          <li><a href="Home.html" target="contentFrame"><span class="icon">🏠</span> Home</a></li>
+          <li><a href="Progress.html" target="contentFrame"><span class="icon">📊</span> Progress</a></li>
+          <li><a href="Music.html" target="contentFrame"><span class="icon">🎵</span> Music</a></li>
+          <li><a href="Video.html" target="contentFrame"><span class="icon">🎥</span> Video</a></li>
+        </ul>
+      <nav class="tools">
+        <h3>TOOLS</h3>
+        <ul>
+          <li><a href="setting.html" target="contentFrame"><span class="icon">⚙️</span> Settings</a></li>
+          <li><a href="Feedback.html" target="contentFrame"><span class="icon">💬</span> Feedback</a></li>
+          <li><a href="help.html" target="contentFrame"><span class="icon">❓</span> Help</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <h2>THE BEST EXPERIENCE IS HERE</h2>
+        <div class="user-profile">
+          <div class="search-wrapper">
+            <input type="search" id="searchButton" name="q" placeholder="Search" required>
+          </div>
+          <button id="notificationButton" class="notification-wrapper">
+            <span class="notification-icon">🔔</span>
+            <span id="notificationCount" class="notification-badge">5</span>
+          </button>
+          <div class="user-info">
+            <span class="user-name">MULAUDZI KONANANI</span>
+            <span class="user-role">Admin store</span>
+          </div>
+          <a href="Profile.html">
+          <img src="placeholder-user.jpg" alt="User Avatar" class="avatar" />
+        </a>
+        </div>
+      </header>
+
+      <!-- Embedded content area -->
+      <iframe name="contentFrame" src="Home.html" style="width:100%; height:100%; border:none;"></iframe>
+    </main>
+  </div>
+</body>
+</html>

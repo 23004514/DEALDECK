@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Settings</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h3 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .setting {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .toggle input {
+      transform: scale(1.2);
+    }
+    .save-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #0078d7;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .save-btn:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Advanced Settings</h2>
+
+    <div class="section">
+      <h3>Privacy & Security</h3>
+      <div class="setting">
+        <label for="2fa">Enable Two-Factor Authentication</label>
+        <div class="toggle">
+          <span>Secure login with 2FA</span>
+          <input type="checkbox" id="2fa" />
+        </div>
+      </div>
+      <div class="setting">
+        <label for="password">Change Password</label>
+        <input type="password" id="password" placeholder="Enter new password" />
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>System Preferences</h3>
+      <div class="setting">
+        <label for="theme">Theme</label>
+        <select id="theme">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="auto">Auto</option>
+        </select>
+      </div>
+      <div class="setting">
+        <label for="timezone">Time Zone</label>
+        <select id="timezone">
+          <option value="UTC+2">South Africa (UTC+2)</option>
+          <option value="UTC+1">Central Europe (UTC+1)</option>
+          <option value="UTC-5">Eastern US (UTC-5)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Developer Options</h3>
+      <div class="setting toggle">
+        <label for="debug">Enable Debug Mode</label>
+        <input type="checkbox" id="debug" />
+      </div>
+      <div class="setting toggle">
+        <label for="beta">Join Beta Program</label>
+        <input type="checkbox" id="beta" />
+      </div>
+    </div>
+
+    <button class="save-btn">Save Changes</button>
+  </div>
+  
+  <script>
+  // Load saved settings on page load
+  window.onload = function() {
+    document.getElementById('2fa').checked = localStorage.getItem('2fa') === 'true';
+    document.getElementById('password').value = localStorage.getItem('password') || '';
+    document.getElementById('theme').value = localStorage.getItem('theme') || 'light';
+    document.getElementById('timezone').value = localStorage.getItem('timezone') || 'UTC+2';
+    document.getElementById('debug').checked = localStorage.getItem('debug') === 'true';
+    document.getElementById('beta').checked = localStorage.getItem('beta') === 'true';
+  };
+
+  // Save settings to localStorage
+  document.querySelector('.save-btn').addEventListener('click', function() {
+    localStorage.setItem('2fa', document.getElementById('2fa').checked);
+    localStorage.setItem('password', document.getElementById('password').value);
+    localStorage.setItem('theme', document.getElementById('theme').value);
+    localStorage.setItem('timezone', document.getElementById('timezone').value);
+    localStorage.setItem('debug', document.getElementById('debug').checked);
+    localStorage.setItem('beta', document.getElementById('beta').checked);
+    alert('Settings saved successfully!');
+  });
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,210 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f9fc;
+      color: #333;
+      margin: 20px;
+      line-height: 1.5;
+    }
+
+    form {
+      max-width: 600px;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    fieldset {
+      border: 1px solid #ddd;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+    }
+
+    legend {
+      font-weight: bold;
+      padding: 0 10px;
+      color: #2c3e50;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+    }
+
+    label[title]:hover::after {
+      content: attr(title);
+      position: absolute;
+      background: #333;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      top: 100%;
+      left: 0;
+      white-space: nowrap;
+      font-weight: normal;
+      font-size: 0.8rem;
+      margin-top: 4px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="month"],
+    input[type="url"],
+    select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 4px;
+      border: 1.5px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="number"]:focus,
+    input[type="month"]:focus,
+    input[type="url"]:focus,
+    select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 6px;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .error-message {
+      color: #d9534f;
+      font-size: 0.9rem;
+      margin-top: 4px;
+      display: none;
+    }
+
+    /* Animations for toggling sections */
+    .toggle-section {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      margin-top: 10px;
+    }
+
+    .toggle-section.active {
+      opacity: 1;
+      max-height: 500px; /* big enough */
+      margin-top: 15px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      form {
+        padding: 15px 20px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="number"],
+      input[type="month"],
+      input[type="url"],
+      select {
+        font-size: 0.9rem;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+
+    /* Modal Styles */
+    #confirmationModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #confirmationModal.active {
+      display: flex;
+    }
+
+    #confirmationContent {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      animation: modalFadeIn 0.5s ease forwards;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #confirmationContent button {
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    #confirmationContent button:hover {
+      background-color: #0056b3;
+    }

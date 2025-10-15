@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music & Video Progress Report</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    color: #333;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .progress-section {
+    margin-bottom: 30px;
+  }
+  .progress-label {
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  progress {
+    width: 100%;
+    height: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stats {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+  }
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  input[type="number"] {
+    width: 100px;
+    padding: 6px 8px;
+    font-size: 16px;
+    margin-right: 15px;
+  }
+  .input-group {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  button {
+    background-color: #5b4afb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #4834e6;
+  }
+</style>
+</head>
+<body>
+
+  <h1>📊 User Progress Report</h1>
+
+  <section class="progress-section">
+    <div class="progress-label">🎵 Music Progress</div>
+    <progress id="musicProgress" value="0" max="100"></progress>
+    <div class="stats" id="musicStats">0% completed — 0 of 20 lessons done</div>
+    <div class="input-group">
+      <label for="musicCompleted">Lessons Completed (out of 20):</label>
+      <input type="number" id="musicCompleted" min="0" max="20" value="0" />
+    </div>
+  </section>
+
+  <section class="progress-section">
+    <div class="progress-label">🎥 Video Progress</div>
+    <progress id="videoProgress" value="0" max="100"></progress>
+    <div class="stats" id="videoStats">0% completed — 0 of 20 videos watched</div>
+    <div class="input-group">
+      <label for="videoCompleted">Videos Watched (out of 20):</label>
+      <input type="number" id="videoCompleted" min="0" max="20" value="0" />
+    </div>
+  </section>
+
+  <button id="updateBtn">Update Progress</button>
+
+  <script>
+    document.getElementById('updateBtn').addEventListener('click', function() {
+      const totalLessons = 20;
+      const totalVideos = 20;
+
+      // Get user inputs
+      let musicDone = parseInt(document.getElementById('musicCompleted').value);
+      let videoDone = parseInt(document.getElementById('videoCompleted').value);
+
+      // Validate input values
+      if (musicDone < 0) musicDone = 0;
+      if (musicDone > totalLessons) musicDone = totalLessons;
+      if (videoDone < 0) videoDone = 0;
+      if (videoDone > totalVideos) videoDone = totalVideos;
+
+      // Calculate percentages
+      const musicPercent = Math.round((musicDone / totalLessons) * 100);
+      const videoPercent = Math.round((videoDone / totalVideos) * 100);
+
+      // Update progress bars
+      document.getElementById('musicProgress').value = musicPercent;
+      document.getElementById('videoProgress').value = videoPercent;
+
+      // Update stats text
+      document.getElementById('musicStats').textContent = `${musicPercent}% completed — ${musicDone} of ${totalLessons} lessons done`;
+      document.getElementById('videoStats').textContent = `${videoPercent}% completed — ${videoDone} of ${totalVideos} videos watched`;
+    });
+  </script>
+
+</body>
+</html>

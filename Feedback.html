@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .form {
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    #feedback-Value {
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <form class="form">
+    <label for="feedback">Enter your Feedback</label> 
+    <input type="text" id="feedback" placeholder="Enter your Feedback" required />
+    <button type="submit" id="submit-btn">Submit Feedback</button>
+  </form>
+
+  <p id="feedback-Value"></p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const submitButton = document.getElementById('submit-btn');
+      const feedbackForm = document.querySelector('.form');
+
+      feedbackForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const feedbackInput = document.getElementById('feedback').value.trim();
+
+        if (!feedbackInput) {
+          alert("Please enter your feedback before submitting.");
+          return;
+        }
+
+        alert("Your Feedback has been Submitted!");
+
+        document.getElementById('feedback-Value').textContent = "Last submitted feedback: " + feedbackInput;
+        document.getElementById('feedback').value = '';
+      });
+    });
+  </script>
+
+</body>
+</html>

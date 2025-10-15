@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Website Help & Support</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f7f9fc;
+    color: #333;
+    margin: 0;
+    padding: 0 20px 50px;
+  }
+  h1, h2 {
+    color: #5b4afb;
+  }
+  .faq-section {
+    max-width: 700px;
+    margin: 40px auto;
+  }
+  .faq-item {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .faq-item:hover {
+    background: #eef0ff;
+  }
+  .faq-question {
+    font-weight: 600;
+  }
+  .faq-answer {
+    margin-top: 10px;
+    display: none;
+    color: #555;
+  }
+
+  form.help-form {
+    max-width: 500px;
+    background: white;
+    margin: 40px auto;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  form.help-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  form.help-form input,
+  form.help-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  form.help-form button {
+    background-color: #5b4afb;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+  }
+  form.help-form button:hover {
+    background-color: #4438c7;
+  }
+
+  /* Floating Chat Button */
+  .chat-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #5b4afb;
+    color: white;
+    border-radius: 50%;
+    padding: 16px 18px;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    user-select: none;
+    z-index: 1000;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Help & Support</h1>
+  <p>If you need assistance, browse the FAQ below or send us a message using the contact form.</p>
+
+  <section class="faq-section" id="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I reset my password?</div>
+      <div class="faq-answer">Click the "Forgot Password" link on the login page and follow the instructions to reset your password.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I update my profile information?</div>
+      <div class="faq-answer">Navigate to your account settings page, where you can update your personal information and preferences.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Where can I find my purchase history?</div>
+      <div class="faq-answer">Your purchase history is available under the "Orders" section in your account dashboard.</div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Contact Us</h2>
+    <form class="help-form" id="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <div class="chat-btn" title="Live Chat Support" onclick="openChat()">💬</div>
+
+  <script>
+    // FAQ toggle open/close
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const answer = item.querySelector('.faq-answer');
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+        } else {
+          // close all answers first
+          document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = 'none');
+          answer.style.display = 'block';
+        }
+      });
+    });
+
+    // Contact form submit handler
+    document.getElementById('contact-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = this.name.value.trim();
+      const email = this.email.value.trim();
+      const message = this.message.value.trim();
+
+      if(name && email && message){
+        alert(`Thank you, ${name}! Your message has been sent.`);
+        this.reset();
+      } else {
+        alert('Please fill out all fields before submitting.');
+      }
+    });
+
+    // Chat button handler
+    function openChat() {
+      alert('Live Chat feature coming soon! Meanwhile, please use the contact form.');
+    }
+  </script>
+
+</body>
+</html>

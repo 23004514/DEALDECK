@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="Cisco2_2.css">
+</head>
+
+<body>
+    <form class="form">
+        <label for="feedback">Enter your Feedback</label> 
+        
+        <input type="text" id="feedback" placeholder="Enter your Feedback" required>
+        
+        <button type="submit" id="submit-btn">Submit Feedback</button>
+        </form>
+
+    <p id="feedback-Value"></p>
+
+    <script>
+        // Best practice: Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the button element
+            const submitButton = document.getElementById('submit-btn');
+            // Get the form element
+            const feedbackForm = document.querySelector('.form');
+
+            // Add an event listener for the form's submit event
+            feedbackForm.addEventListener('submit', function(event) {
+                // Prevent the default form submission (which reloads the page)
+                event.preventDefault(); 
+                
+                // Get the input value (optional, but good for completeness)
+                const feedbackInput = document.getElementById('feedback').value;
+
+                // Display the alert message
+                alert("Your Feedback has been Submitted!");
+                
+                // Optional: Clear the input field after submission
+                document.getElementById('feedback').value = '';
+
+                // Optional: Display the feedback in the <p> tag
+                document.getElementById('feedback-Value').textContent = "Last submitted feedback: " + feedbackInput;
+            });
+        });
+    </script>
+</body>
+
+</html>

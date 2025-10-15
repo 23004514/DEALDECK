@@ -1,0 +1,244 @@
+    /* General Resets and Variables */
+    :root {
+      --bg-color: #f7f9fc;
+      --card-bg: #ffffff;
+      --sidebar-bg: #ffffff;
+      --primary-color: #5b4afb; /* The main blue/purple */
+      --text-color: #333333;
+      --secondary-text: #666666;
+      --positive-color: #28a745;
+      --negative-color: #dc3545;
+      --border-color: #e6e9ed;
+      --font-family: 'Arial', sans-serif; /* Use your preferred font */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* Dashboard Container (Grid Layout) */
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      min-height: 1vh;
+    }
+
+    /* 1. Sidebar Styling */
+    .sidebar {
+      background-color: var(--sidebar-bg);
+      padding: 20px 20px;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 40px;
+    }
+
+    .menu, .financial, .tools {
+      margin-bottom: 30px;
+    }
+
+    .sidebar h3 {
+      font-size: 10px;
+      color: var(--secondary-text);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+   
+    }
+
+    .sidebar li a {
+      display: flex;
+      align-items: center;
+      padding: 5px 15px;
+      text-decoration: none;
+      color: var(--secondary-text);
+      border-radius: 8px;
+      margin: 5px 0;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar li a .icon {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .sidebar li.active a {
+      background-color: var(--primary-color);
+      color: var(--card-bg);
+      font-weight: 600;
+    }
+
+    .sidebar li a:hover:not(.active) {
+      background-color: #000000;
+      color: var(--text-color);
+    }
+
+    /* 2. Main Content Styling */
+    .main-content {
+      padding: 20px 30px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0 30px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header h2 {
+      font-size: 22px;
+    }
+    
+    .user-profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon, .notification-icon {
+      font-size: 18px;
+      margin-right: 25px;
+      color: var(--secondary-text);
+      cursor: pointer;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      margin-right: 15px;
+    }
+
+    .user-name {
+      font-weight: 200;
+    }
+
+    .user-role {
+      font-size: 12px;
+      color: var(--secondary-text);
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: hsl(0, 0%, 80%);
+    }
+
+ .search-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 10px;
+  width: 250px;
+  background-color: #fff;
+}
+
+.search-wrapper input[type="search"] {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+  padding: 8px;
+  background-color: transparent;
+}
+
+.search-wrapper .search-icon {
+  cursor: pointer;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+
+.notification-wrapper {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 0;
+}
+
+.notification-icon {
+  font-size: 28px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background-color: rgba(247, 1, 173, 0.993);
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  line-height: 1;
+  font-weight: bold;
+}
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    padding: 5px 10px;
+  }
+
+  a.active {
+    font-weight: bold;
+    color: blue;
+    border-bottom: 2px solid blue;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+  }
+
+  /*Dark mode*/
+   body {
+    background-color: #fff;
+    color: #000;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px;
+  }
+  body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+  button#toggleBtn {
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  button#toggleBtn:hover {
+    background-color: #0056b3;
+  }

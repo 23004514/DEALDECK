@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advanced Video Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+      text-align: center;
+    }
+    .video-container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+	
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .controls button, .controls select, .controls input[type="range"] {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #5b4afb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .controls button:hover, .controls select:hover {
+      background-color: #3f37c9;
+    }
+    .time-display {
+      font-size: 14px;
+      color: #333;
+      min-width: 100px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Video Player</h1>
+		<div class="video-container">
+		  <video id="videoPlayer" width="640" height="360">
+			<source src="arshmello,_Polo_G,_Southside_-_Grown_Man_(Official_Video)(480p).mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		  </video>
+		</div>
+
+    <div class="controls">
+      <button id="prevBtn">⏮️ Previous</button>
+      <button id="playPauseBtn">▶️ Play</button>
+      <button id="nextBtn">⏭️ Next</button>
+      <button id="muteBtn">🔇 Mute</button>
+      <button id="fullscreenBtn">⛶ Fullscreen</button>
+      <label>
+        Speed:
+        <select id="speedControl">
+          <option value="0.5">0.5x</option>
+          <option value="1" selected>1x</option>
+          <option value="1.5">1.5x</option>
+          <option value="2">2x</option>
+        </select>
+      </label>
+      <label>
+        Volume:
+        <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" />
+      </label>
+      <div class="time-display" id="timeDisplay">00:00 / 00:00</div>
+    </div>
+  </div>
+
+  <script>
+    const videoPlayer = document.getElementById('videoPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const speedControl = document.getElementById('speedControl');
+    const volumeControl = document.getElementById('volumeControl');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const videos = [
+      { src: "Marshmello,_Polo_G,_Southside_-_Grown_Man_(Official_Video)(480p).mp4", title: "Video 1" },
+      { src: "Marshmello_ft._Bastille_-_Happier_(Official_Music_Video)(360p).mp4", title: "Video 2" },
+      { src: "Nasty_C_-_Stalling_(Lyric_Video)(480p).mp4", title: "Video 3" },
+      { src: "VID-20241209-WA0118.mp4", title: "Video 4" }
+    ];
+    let currentVideo = 0;
+
+    function loadVideo(index) {
+      if (index >= 0 && index < videos.length) {
+        videoPlayer.src = videos[index].src;
+        videoPlayer.load();
+        videoPlayer.play();
+        currentVideo = index;
+        playPauseBtn.textContent = "⏸️ Pause";
+
+        // Disable prev/next buttons accordingly
+        prevBtn.disabled = currentVideo === 0;
+        nextBtn.disabled = currentVideo === videos.length - 1;
+      }
+    }
+
+    playPauseBtn.addEventListener('click', () => {
+      if (videoPlayer.paused) {
+        videoPlayer.play();
+        playPauseBtn.textContent = "⏸️ Pause";
+      } else {
+        videoPlayer.pause();
+        playPauseBtn.textContent = "▶️ Play";
+      }
+    });
+
+    muteBtn.addEventListener('click', () => {
+      videoPlayer.muted = !videoPlayer.muted;
+      muteBtn.textContent = videoPlayer.muted ? "🔈 Unmute" : "🔇 Mute";
+    });
+
+    fullscreenBtn.addEventListener('click', () => {
+      if (videoPlayer.requestFullscreen) {
+        videoPlayer.requestFullscreen();
+      } else if (videoPlayer.webkitRequestFullscreen) {
+        videoPlayer.webkitRequestFullscreen();
+      } else if (videoPlayer.msRequestFullscreen) {
+        videoPlayer.msRequestFullscreen();
+      }
+    });
+
+    speedControl.addEventListener('change', () => {
+      videoPlayer.playbackRate = parseFloat(speedControl.value);
+    });
+
+    volumeControl.addEventListener('input', () => {
+      videoPlayer.volume = volumeControl.value;
+    });
+
+    videoPlayer.addEventListener('timeupdate', () => {
+      const current = formatTime(videoPlayer.currentTime);
+      const duration = isNaN(videoPlayer.duration) ? "00:00" : formatTime(videoPlayer.duration);
+      timeDisplay.textContent = `${current} / ${duration}`;
+    });
+
+    // Reset play button when video ends
+    videoPlayer.addEventListener('ended', () => {
+      playPauseBtn.textContent = "▶️ Play";
+    });
+
+    function formatTime(seconds) {
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentVideo > 0) loadVideo(currentVideo - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentVideo < videos.length - 1) loadVideo(currentVideo + 1);
+    });
+
+    // Load first video initially
+    loadVideo(currentVideo);
+  </script>
+
+</body>
+</html>
